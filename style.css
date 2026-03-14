@@ -149,3 +149,52 @@ td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
         font-size: 16px; /* Evita que o iPhone dê zoom automático no input */
     }
 }
+/* --- AJUSTE DOS BOTÕES DO ADMINISTRADOR --- */
+
+/* Estilo do botão de Imprimir (Azul) */
+.btn-print-style {
+    background-color: #3b82f6 !important;
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+/* Estilo do botão de Limpar (Vermelho de Alerta) */
+.btn-danger-style {
+    background-color: #ef4444 !important;
+    color: white !important;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    transition: 0.3s;
+}
+
+/* Ajuste para que eles fiquem bonitos no celular */
+@media (max-width: 768px) {
+    .actions-adm {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr; /* Coloca um do lado do outro dividindo a tela */
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .btn-print-style, .btn-danger-style {
+        width: 100%;
+        font-size: 14px;
+        min-height: 70px; /* Garante altura para o ícone e o texto */
+    }
+}
