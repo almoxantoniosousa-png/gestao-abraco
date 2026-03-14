@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Abraço - Gestão v11</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+    
+        <!-- TELA DE LOGIN -->
+        <div id="login-screen">
+            <img src="logo.png" alt="Logo Clínica Abraço" class="img-logo">
+            <p style="color: #64748b; margin-top: 10px;">Selecione seu nome para acessar:</p>
+            <div id="lista-usuarios" class="grid-usuarios"></div>
+            
+            <div style="max-width: 300px; margin: 0 auto;">
+                <input type="password" id="user-pass" placeholder="Digite sua senha">
+                <button onclick="tentarLogin()" class="btn-primary">Entrar no Sistema</button>
+            </div>
+        </div>
+
+        <!-- PAINEL DO ESPECIALISTA -->
+        <div id="app-body" style="display:none;">
+            <div class="dashboard-card">
+                <header>
+                    <div>
+                        <small style="color: #64748b; display: block;">Bem-vinda,</small>
+                        <h2 id="nome-logado" style="color: var(--primary); margin: 0;"></h2>
+                    </div>
+                    <button onclick="logout()" class="btn-sair">Sair</button>
+                </header>
+
+                <div class="stats-grid no-print">
+                    <div class="stat-card">
+                        <span>Atendimentos na lista</span>
+                        <b id="count-atend">0</b>
+                    </div>
+                    <div class="stat-card">
+                        <span>Total Previsto</span>
+                        <b id="total-val-card">R$ 0,00</b>
+                    </div>
+                </div>
+
+                <div class="form-atendimento no-print">
+                    <div class="grid-form">
+                        <select id="paciente-select"></select>
+                        <input type="date" id="data-atend">
+                        <select id="status-atend">
+                            <option value="P - PRESENÇA">P - PRESENÇA</option>
+                            <option value="E - ESCOLA">E - ESCOLA</option>
+                            <option value="CS - CASA">CS - CASA</option>
+                            <option value="F - FALTA">F - FALTA</option>
+                            <option value="FJ - JUSTIFICADA">FJ - JUSTIFICADA</option>
+                        </select>
+                    </div>
+                    <button onclick="salvar()" class="btn-primary" style="margin-top: 15px; background: var(--success);">✅ Lançar Atendimento</button>
+                </div>
+
+                <div class="filter-box no-print" style="display: flex; justify-content: flex-end; margin-bottom: 15px;">
+                    <button onclick="enviarParaAdm()" class="btn-send">🚀 Enviar para Faturamento</button>
+                </div>
+
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr><th>Data</th><th>Paciente</th><th>Status</th><th>Valor</th><th class="no-print"></th></tr>
+                        </thead>
+                        <tbody id="corpo-esp"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAINEL ADMINISTRADOR -->
+        <div id="adm-body" style="display:none;">
+            <div class="dashboard-card">
+                <header>
+                    <h2 style="color: var(--primary);">PAINEL GESTÃO GERAL</h2>
+                    <button onclick="logout()" class="btn-sair">Sair</button>
+                </header>
+
+                <div class="no-print actions-adm" style="margin-bottom: 20px; display: flex; gap: 10px; align-items: center;">
+                    <label style="font-size: 13px; color: #64748b;">Mês Ref:</label>
+                    <input type="month" id="filtro-mes-adm" onchange="alterarFiltro(this.value)">
+                    <button onclick="window.print()" class="btn-print-style">🖨️ Imprimir PDF</button>
+                    <button onclick="limparBancoAdm()" class="btn-danger-style">🧹 Limpar Tudo</button>
+                </div>
+
+                <div id="corpo-adm"></div>
+                <div class="total-box">TOTAL GERAL: <span id="total-adm">R$ 0,00</span></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
