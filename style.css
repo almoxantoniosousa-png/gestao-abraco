@@ -110,3 +110,42 @@ td { padding: 12px; border-bottom: 1px solid #f1f5f9; font-size: 14px; }
 .btn-danger-style { background:#cbd5e1; color:#475569; border:none; padding:10px; border-radius:8px; cursor:pointer; }
 
 @media print { .no-print { display: none !important; } body { background: white; padding: 0; } .dashboard-card { box-shadow: none; border: none; } }
+
+.filter-box {
+    border-top: 1px solid #e2e8f0; /* Cria uma linha sutil de separação */
+    padding-top: 10px;
+    margin-top: 20px;
+}
+/* AJUSTES PARA CELULAR (TELAS ATÉ 768px) */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px; /* Diminui o respiro lateral */
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr; /* Coloca um card de valor embaixo do outro */
+        gap: 10px;
+    }
+
+    .grid-form {
+        display: flex;
+        flex-direction: column; /* Estica os campos de seleção e data de cima a baixo */
+        gap: 10px;
+    }
+
+    /* ESSENCIAL: Tabela que não quebra o layout */
+    table {
+        display: block;
+        overflow-x: auto; /* Cria uma barra de rolagem SÓ na tabela, não na tela toda */
+        white-space: nowrap; /* Impede que o texto quebre linha e fique bagunçado */
+    }
+
+    .dashboard-card {
+        padding: 15px; /* Reduz o preenchimento interno para ganhar espaço */
+    }
+
+    input, select, button {
+        width: 100% !important; /* Garante que os botões ocupem a largura toda do dedo */
+        font-size: 16px; /* Evita que o iPhone dê zoom automático no input */
+    }
+}
