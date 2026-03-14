@@ -3,44 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Abraço - Gestão v11</title>
-    <!-- Link para o seu arquivo CSS -->
+    <title>Clínica Abraço - Gestão v12.1</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Link corrigido para a fonte Inter (App Premium) -->
     <link href="https://fonts.googleapis.com" rel="stylesheet">
 </head>
 <body>
-
     <div class="container">
-    
-        <!-- TELA DE LOGIN (Aparece primeiro) -->
+        <!-- TELA DE LOGIN -->
         <div id="login-screen">
             <img src="logo.png" alt="Logo Clínica Abraço" class="img-logo">
-            <p style="color: #64748b; margin-top: 10px;">Selecione seu nome para acessar:</p>
-            
-            <div id="lista-usuarios" class="grid-usuarios">
-                <!-- Os nomes dos profissionais serão inseridos aqui pelo JS -->
-            </div>
-            
+            <p style="color: #64748b; margin-top: 10px;">Selecione seu nome:</p>
+            <div id="lista-usuarios" class="grid-usuarios"></div>
             <div style="width: 100%; max-width: 300px; margin: 0 auto;">
-                <input type="password" id="user-pass" placeholder="Digite sua senha">
-                <button onclick="tentarLogin()" class="btn-primary" style="background: #1e40af; margin-top: 10px;">Entrar no Sistema</button>
+                <input type="password" id="user-pass" placeholder="Senha">
+                <button onclick="tentarLogin()" class="btn-primary" style="margin-top: 10px;">Entrar no Sistema</button>
             </div>
         </div>
 
-        <!-- PAINEL DO ESPECIALISTA (Escondido por padrão) -->
+        <!-- PAINEL DO ESPECIALISTA -->
         <div id="app-body" style="display:none;">
             <div class="dashboard-card">
                 <header>
                     <div>
-                        <small style="color: #64748b; display: block;">Olá!,</small>
+                        <small style="color: #64748b; display: block;">Olá,</small>
                         <h2 id="nome-logado" style="color: #1e40af; margin: 0;"></h2>
                     </div>
                     <button onclick="logout()" class="btn-sair">Sair</button>
                 </header>
 
                 <div class="stats-grid no-print">
-                    <div class="stat-card">
+                    <div class="stat-card" id="card-atendimentos">
                         <span>Atendimentos na lista</span>
                         <b id="count-atend">0</b>
                     </div>
@@ -62,15 +54,14 @@
                             <option value="FJ - JUSTIFICADA">FJ - JUSTIFICADA</option>
                         </select>
                     </div>
-                    <button onclick="salvar()" class="btn-primary" style="margin-top: 15px; background: #22c55e;">✅ Lançar Atendimento</button>
+                    <button onclick="salvar()" class="btn-primary" style="margin-top: 10px; background: #22c55e;">✅ Lançar Atendimento</button>
                 </div>
 
-                <!-- Botão de Faturamento Centralizado -->
                 <div class="filter-box no-print">
                     <button onclick="enviarParaAdm()" class="btn-send">🚀 Enviar para Faturamento</button>
                 </div>
 
-                <div style="overflow-x: auto;">
+                <div class="table-container">
                     <table>
                         <thead>
                             <tr>
@@ -87,22 +78,23 @@
             </div>
         </div>
 
-        <!-- PAINEL ADMINISTRADOR (Escondido por padrão) -->
+        <!-- PAINEL ADMINISTRADOR -->
         <div id="adm-body" style="display:none;">
             <div class="dashboard-card">
                 <header>
-                    <h2 style="color: #1e40af; margin: 0;">PAINEL GESTÃO GERAL</h2>
+                    <h2 style="color: #1e40af; margin: 0;">GESTÃO GERAL</h2>
                     <button onclick="logout()" class="btn-sair">Sair</button>
                 </header>
 
-                <div class="no-print actions-adm" style="margin-bottom: 20px;">
-                    <div style="display: flex; flex-direction: column; gap: 5px;">
-                        <label style="font-size: 13px; color: #64748b;">Mês Ref:</label>
-                        <input type="month" id="filtro-mes-adm" onchange="alterarFiltro(this.value)">
+                <div class="no-print actions-adm">
+                    <div style="display: flex; flex-direction: column; gap: 5px; width: 100%;">
+                        <label style="font-size: 13px; color: #64748b;">Mês de Referência:</label>
+                        <input type="month" id="filtro-mes-adm" onchange="alterarFiltro()">
                     </div>
-                    <div style="display: flex; gap: 10px; width: 100%;">
-                        <button onclick="window.print()" class="btn-print-style">🖨️ Imprimir PDF</button>
-                        <button onclick="limparBancoAdm()" class="btn-danger-style">🧹 Limpar Tudo</button>
+                    <div style="display: flex; gap: 10px; width: 100%; margin-top: 10px; flex-wrap: wrap;">
+                        <button onclick="window.print()" class="btn-print-style">🖨️ Imprimir</button>
+                        <button onclick="exportarFaturamentoCSV()" class="btn-print-style" style="background: #059669;">📊 Exportar Planilha</button>
+                        <button onclick="limparBancoAdm()" class="btn-danger-style">🧹 Limpar</button>
                     </div>
                 </div>
 
@@ -111,8 +103,6 @@
             </div>
         </div>
     </div>
-
-    <!-- Link para o seu arquivo JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
